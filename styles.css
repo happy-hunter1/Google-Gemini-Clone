@@ -1,0 +1,390 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+}
+
+.sidebar {
+    height: 100vh;
+    width: 5.2vw;
+    background-color: rgb(239, 247, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the items vertically */
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0; /* Ensures the sidebar starts at the top */
+}
+
+.fa-bars{
+    font-size: 20px;
+    position: absolute;
+    top: 19px;
+}
+
+.fa-plus{
+    position: absolute;
+    top: 112px;
+    font-size: 25px;
+    opacity: 0.5;
+}
+
+.bottom{
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    font-size: 16px;
+}
+
+.i{
+    opacity: 0.7;
+    padding: 10px;
+    transition: 0.4s ease;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.i:hover{
+    border-radius: 50%;
+    background-color: lightgrey; /* Circle color on hover */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.sidebar i::after {
+    content: attr(data-tooltip); /* Use custom attribute to set text */
+    position: absolute;
+    bottom: -30px; /* Adjust this value to control the distance from the icon */
+    left: 50%;
+    transform: translateX(-30%);
+    background-color: rgb(0, 0, 0); /* Tooltip background */
+    color: #fff; /* Tooltip text color */
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    white-space: nowrap; /* Prevents text wrapping */
+    opacity: 0; /* Hidden by default */
+    pointer-events: none; /* Ignore mouse events for the tooltip */
+    transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+.sidebar i:hover::after {
+    opacity: 1; /* Show the tooltip on hover */
+}
+
+/* top */
+.top {
+    width: calc(100vw - 5.2vw); /* Full width minus the sidebar */
+    height: 60px; /* Fixed height for the top bar */
+    background-color: #ffffff; /* Background color for the top bar */
+    color: rgb(172, 101, 101); /* Text color */
+    display: flex; /* Flexbox to align the title and top-right section */
+    justify-content: space-between; /* Distribute space between the Gemini logo and the right side */
+    align-items: center; /* Vertically center items in the top bar */
+    padding: 0 20px; /* Padding on the left and right */
+    position: absolute; /* Keeps it at the top of the page */
+    z-index: 1; /* Ensure it's above the sidebar */
+    top: 10px;
+    right: 0;
+}
+
+.image{
+    width: 50px; /* Set the width of the circle */
+    height: 50px; /* Set the height of the circle (equal to width) */
+    border-radius: 50%; /* Makes the div a perfect circle */
+    background-image: url('./Images/IMG_5444-01.jpeg'); /* Replace with the path to your image */
+    background-size: cover; /* Ensure the image covers the div completely */
+    background-position: center; /* Center the image inside the circle */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    border: 1px solid #ccc; /* Optional: Add a border around the circle */
+    position: relative;
+    transition: box-shadow 0.3s ease; /* Smooth transition for the box-shadow */
+}
+
+.image::after {
+    content: attr(data-tooltip); /* Get the tooltip text from the data-tooltip attribute */
+    position: absolute;
+    bottom: -30px; /* Adjust based on where you want the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for the tooltip */
+    color: #fff; /* White text color */
+    padding: 5px 10px; /* Padding around the text */
+    border-radius: 4px; /* Rounded corners for the tooltip */
+    font-size: 12px; /* Font size for the tooltip text */
+    white-space: nowrap; /* Prevents text wrapping */
+    opacity: 0; /* Hidden by default */
+    pointer-events: none; /* Disable pointer events for the tooltip */
+    transition: opacity 0.3s ease; /* Smooth transition for showing the tooltip */
+}
+
+.image:hover{
+    cursor: pointer;
+}
+
+.image:hover::after {
+    opacity: 1; /* Show the tooltip on hover */
+}
+
+.image:hover::before {
+    border: 1px solid lightgrey; /* The border appears on hover */
+    width: calc(100% + 2px); /* Extend the border 1px outward */
+    height: calc(100% + 2px); /* Extend the border 1px outward */
+    top: -1px;
+    left: -1px;
+}
+
+.title {
+    display: flex; /* Aligns the items (text and icon) in a row */
+    align-items: center; /* Vertically centers the text and the icon */
+    gap: 10px;
+    cursor: pointer;
+}
+
+.title h3 {
+    margin-right: 5px; /* Add a little space between the text and the icon */
+    font-size: 24px; /* Adjust the size of the text as needed */
+    color: rgb(0, 0, 0); /* Match the color you used */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 100;
+}
+
+.title i {
+    font-size: 16px; /* Adjust the size of the icon if needed */
+    color: rgb(2, 2, 2); /* Ensure the icon color matches the text */
+}
+
+.top-right {
+    display: flex; /* Aligns the elements in a row */
+    justify-content: flex-end; /* Ensures elements stick to the right */
+    align-items: center; /* Vertically center the elements */
+    gap: 20px; /* Space between each element */
+}
+
+.top-right .try {
+    display: flex; /* Align the star icon and text in a row */
+    align-items: center;
+    font-size: 14px; /* Adjust the font size */
+    color: rgb(0, 0, 0); /* Text color */
+    background-color: #e0e0e0;
+    padding: 10px;
+    gap: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.top-right .try:hover{
+    background-color: #ccc;
+}
+
+.top-right .try i {
+    margin-right: 5px; /* Space between the star icon and the text */
+    color: rgb(199, 3, 134); /* Icon color */
+    font-size: 15px;
+}
+
+.top-right .image::after {
+    content: attr(data-tooltip); /* Tooltip content */
+    position: absolute;
+    bottom: -30px; /* Adjust tooltip position */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.top-right .image:hover::after {
+    opacity: 1; /* Show tooltip on hover */
+}
+
+.top-right .fa-grip {
+    font-size: 18px; /* Adjust the icon size */
+    color: rgb(15, 15, 15);
+    padding: 10px;
+    transition: .3s;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.top-right i:hover{
+    background-color: #dfdcdc;
+} 
+
+.top-right .fa-grip::after {
+    content: attr(data-tooltip); /* Get the tooltip text from the data-tooltip attribute */
+    position: absolute;
+    bottom: -30px; /* Position the tooltip below the icon */
+    left: 50%;
+    transform: translateX(-50%); /* Center the tooltip */
+    background-color: rgba(0, 0, 0, 0.7); /* Background for the tooltip */
+    color: #fff; /* Text color for the tooltip */
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 10px;
+    opacity: 0; /* Hidden by default */
+    white-space: nowrap; /* Prevents text from wrapping */
+    pointer-events: none; /* Disable mouse events on the tooltip */
+    transition: opacity 0.3s ease; /* Smooth transition for tooltip visibility */
+}
+
+.top-right .fa-grip:hover::after {
+    opacity: 1; /* Show the tooltip on hover */
+}
+
+.greetings{
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    left: 300px;
+    top: 120px;
+    font-size: 40px;
+    display: grid;
+    letter-spacing: 0.2px;
+}
+
+.name {
+    background-image: linear-gradient(to right, #5560ff 0%, #f86855 30%, #feb47b 70%, #feb47b 100%);
+    -webkit-background-clip: text; /* Clip the background to the text */
+    color: transparent; /* Make the text color transparent so the gradient shows */
+}
+
+.help{
+    color: #aaa9a9;
+}
+
+.suggestions {
+    position: relative;
+    top: 300px;
+    height: 220px;
+    border-radius: 10px;
+    width: 1000px; /* Full viewport width minus the sidebar width */
+    margin: 0 auto; /* Centers the section horizontally */
+    display: flex; /* Use flexbox to arrange the divs */
+    justify-content: space-between; /* Distribute the divs with space between them */
+    align-items: center; /* Aligns the divs vertically in the center */
+    padding: 20px; /* Optional: Adds some padding around the container */
+    background-color: #ffffff;
+}
+
+.suggestions .a {
+    position: relative;
+    width: 23%; /* Ensures 4 divs fit within the container with space between */
+    height: 200px; /* Set the height of the divs */
+    background-color: #f1f1f1; /* Background color for visibility */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+.suggestions .a p{
+    padding: 20px;
+    font-size: 17px;
+    font-family:  'Poppins', sans-serif;
+}
+
+.suggestions .a i{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.input-bar {
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+    height: 70px;
+    width: 800px; /* Adjust based on sidebar width */
+    margin: 20px auto; /* Center the input bar horizontally */
+    background-color: #ffffff; /* Background color */
+    border-radius: 8px; /* Rounded corners */
+    position: fixed; /* Fixed position to stay at the bottom */
+    bottom: 20px; /* Distance from the bottom of the viewport */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+}
+
+.prompt-input {
+    background-color: #f7f6f6;
+    height: 100%;
+    width: 100%;
+    flex: 1; /* Take up remaining space */
+    border: none; /* Remove default border */
+    padding: 20px; /* Padding for the input */
+    font-size: 16px; /* Font size */
+    border-radius: 40px; /* Rounded corners */
+    outline: none; /* Remove outline on focus */
+}
+
+.icons {
+    gap: 5px;
+    display: flex; /* Align icons in a row */
+    margin-left: 5px; /* Space between input and icons */
+    padding: 20px;
+    width: 10%;
+}
+
+.icons i {
+    font-size: 17px; /* Icon size */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-left: 8px; /* Space between icons */
+}
+
+/* Optional tooltip styles */
+.icons i[data-tooltip]:hover::after {
+    font-size: 13px;
+    content: attr(data-tooltip); /* Show tooltip text */
+    position: absolute;
+    background-color: #333; /* Tooltip background color */
+    color: #fff; /* Tooltip text color */
+    padding: 5px;
+    border-radius: 4px; /* Rounded corners */
+    white-space: nowrap; /* Prevent text wrapping */
+    transform: translateY(-100%); /* Position above the icon */
+    opacity: 0.8; /* Slightly transparent */
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+.footer {
+    position: fixed; /* Keeps the footer at the bottom of the viewport */
+    bottom: 0; /* Aligns the footer to the bottom */
+    left: 0; /* Aligns to the left edge */
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for the footer */
+    text-align: center; /* Center the text */
+}
+
+.footer p {
+    margin: 0; /* Remove default margin */
+    font-size: 14px; /* Font size */
+}
+
+.privacy-link {
+    color: rgb(0, 0, 0); /* Link color */
+    text-decoration: underline;
+    font-family:  'Poppins', sans-serif;
+}
+
+
